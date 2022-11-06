@@ -26,10 +26,11 @@ def spawn_process():
 
 
 def check_mapping(short_url, long_url):
-    long_url = LinkLonger.url_short_reverse(short_url)
-    short_url_clean= short_url.split('null')[-1]
-    long_url_clean = long_url.split('/')[-1].split('null')
-    if short_url_clean == long_url_clean:   # mapping is correct
+    short_url_2_long_url = LinkLonger.url_short_reverse(short_url)
+    short_url_2_long_url = short_url_2_long_url.split('null')[-1]
+    long_url_clean = long_url.split('/')[-1].split('null')[-1]
+    log.info('Checking mapping of short url: {} and Long url: {}'.format(short_url_2_long_url, long_url_clean))
+    if short_url_2_long_url == long_url_clean:   # mapping is correct
         return 0
     else:
         return -1
@@ -44,8 +45,8 @@ def start_tunneling():
     elif output[0] == 0:
         # There is a case, where ssh session might be disconnected
         tunnel_output = all_tunnels.tunnels()
-        if tunnel_output[0] == -2:  # successful tunnel session this device doesn't exist. Possibly the process is orphaned
-            log.error("Tunnel session this device doesn't exist. Possibly the process is orphaned.")
+        if tunnel_output[0] == -2:  # successful tunnel session for device doesn't exist. Possibly the process is orphaned
+            log.error("Tunnel session on this device doesn't exist. Possibly the process is orphaned.")
             log.info("Killing the process and spawning the new process.")
             process.kill()
             log.info("Spawning new process")
