@@ -18,6 +18,7 @@ class Process:
                 pid = process.pid
                 cmd = "ps aux | grep '[n]grok {} {}'"
                 status, output = RunCommand.execute(self, cmd=cmd, protocol=self.protocol, port=self.port)
+                log.info('Process exist. List of process: {}'.format(output))
                 return (status, output)
         else:
             return -1, None
@@ -40,7 +41,12 @@ class Process:
         pass
 
     def kill(self):
-        cmd_check_pid = "ps aux | grep '[n]grok {} {}'".format(self.protocol, self.port) + " | awk -F: '{ split($0,a,\" \"); print a[2] }'"
+
+        # TODO: Note: We are extracting all the process that are associated with keyword Ngrok. TODO: But as process
+        #  spawn by setsid, we see that 2 process are running one is setsid(parent) and other is ngrok(child) one So,
+        #  for now we consider that new process spawn up always have PID greater than the parent. But it might not be
+        #  the case always. Need to look more
+        cmd_check_pid = "ps aux | grep '[n]grok {} {}'".format(self.protocol, self.port) + " | awk -F: '{ split($0,a,\" \"); print a[2] }' | tail -1"
         PID = self.get_pid(cmd_check_pid)
         if PID == -1:
             print('No such process exist or Process is already killed.')

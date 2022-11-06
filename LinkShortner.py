@@ -3,6 +3,7 @@ import requests
 import uuid
 import ApplicationProperties
 from urllib import parse
+from Logging import log
 
 
 class LinkShortner:
@@ -13,6 +14,11 @@ class LinkShortner:
         # self.urlToShorten = url
 
     def url_shortner(self, url):
+        output = self.change_alias()
+        if output[0] == 3:
+            log.info('The Default short url is new and not register for any shortner. \n Registering url: {} with for shortening the url.'.format(url))
+        elif output[0] == 2:
+            log.error('Can\'t change the alias, '+ output[1])
         return self.set_alias(url)
 
     # Invoke cuttly api to get the output
@@ -32,16 +38,16 @@ class LinkShortner:
             'name': random_alias
         }
         output = {}
-        print(self.change_alias.__name__, parameters)
+        log.info('Changing alias with parameter: '+ str(parameters))
         output, status = self.cuttly_api(parameters)
-        print(self.change_alias.__name__, output, status)
+        print('Changing alias API output: {} Status: {}'.format(output, status))
         if output != '' and "status" in output:
             if output['status'] == 3:
-                return {"message": "The default doesn't linked to the system."}
+                return (3, "message: The default doesn't linked to the system.")
             elif output['status'] == 2:
-                return {'message': 'Cuttly api return error. Error: Couldn\'t save in db'}
+                return (2, 'message: Cuttly api return error. Error: Couldn\'t save in db')
             elif output['status'] == 1:
-                return {'message': 'Long url(ngrok url) success changed to default shortened url'}
+                return (0, 'message: Long url(ngrok url) success changed to default shortened url')
         pass
 
     # Set the the SSH_alias to the new generated Ngrok-url (e.g tcp://0.tcp.ngrok.io:somePort )
@@ -58,9 +64,9 @@ class LinkShortner:
             'name': ApplicationProperties.SSH_custom_alias
         }
         output = {}
-        print(self.set_alias.__name__, parameters)
+        log.info('Setting the new long url to short url: ' + PORT_FORWARDED_URL+ApplicationProperties.SSH_custom_alias)
         output, status = self.cuttly_api(parameters)
-        print(self.set_alias.__name__, output, status)
+        log.info(str(self.set_alias.__name__) + ' Output: '+ str(output) + ' Status: '+ str(status))
         if output != '' and 'url' in output:
             if output['url']['status'] == 2:
                 return (0, 'error: Probably error in Long url(Ngrok)')
