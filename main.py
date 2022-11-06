@@ -65,6 +65,7 @@ def start_tunneling():
 
 
 if __name__ == '__main__':
+    log.info('\n\n\n##################### Initialization Process #####################')
     process = Process()
     link_shortner = LinkShortner()
     all_tunnels = AllTunnels()

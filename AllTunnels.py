@@ -21,7 +21,7 @@ class AllTunnels:
                    'Authorization': 'Bearer {}'.format(self.secret_key)}
 
         log.info('Checking process before Ngrok Api call {} '.format(Process().check()))
-        log.info('Invoking ngrok API: {} and headers: {}'.format(url, headers))
+        log.info('Invoking ngrok API to get tunnel sessions: {} and headers: {}'.format(url, headers))
 
         # Patch: Encountered a bug where NGROK API wasn't returning correct response even after successfull correct ngrok process execution.
         # Patch: So delay is added so that there ngrok session would update in ngrok servers and API return correct response.
