@@ -4,6 +4,7 @@ from Process import Process
 from Logging import log
 import ApplicationProperties
 from LinkLonger import LinkLonger
+from CheckMapping import CheckMapping
 
 DEFAULT_SHORT_URL = ApplicationProperties.BASE_DOMAIN + ApplicationProperties.SSH_custom_alias
 
@@ -25,17 +26,6 @@ def spawn_process():
             return -1
 
 
-def check_mapping(short_url, long_url):
-    short_url_2_long_url = LinkLonger.url_short_reverse(short_url)
-    short_url_2_long_url = short_url_2_long_url.split('null')[-1]
-    long_url_clean = long_url.split('/')[-1].split('null')[-1]
-    log.info('Checking mapping of short url: {} and Long url: {}'.format(short_url_2_long_url, long_url_clean))
-    if short_url_2_long_url == long_url_clean:   # mapping is correct
-        return 0
-    else:
-        return -1
-
-
 def start_tunneling():
     output = process.check()
     if output[0] == -1:
@@ -52,7 +42,7 @@ def start_tunneling():
             log.info("Spawning new process")
             spawn_process()
         elif tunnel_output[0] == 0:
-            status = check_mapping(short_url=DEFAULT_SHORT_URL, long_url=tunnel_output[1])
+            status = CheckMapping().check_mapping(short_url=DEFAULT_SHORT_URL, long_url=tunnel_output[1])
             if status == 0:
                 log.info('{} is already mapped to shorted url : {}'.format(DEFAULT_SHORT_URL, tunnel_output[1]))
             else:   # correct mapping is not there. So change alias -> set alias to correct long url
