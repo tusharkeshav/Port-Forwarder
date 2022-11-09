@@ -2,7 +2,14 @@ from subprocess import getstatusoutput, Popen
 from Logging import log
 
 
+# TODO: Refactoring
 class RunCommand:
+    """
+    TODO: Need Refactoring
+    Functionality: \n
+    1. Can run specified command giving no output. \n
+    2. Can run specified command and result of command as output.
+    """
 
     def executeWithoutOutput(self, cmd: str) -> bool:
         log.info("Executing command with Popen: " + cmd)

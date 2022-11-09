@@ -5,6 +5,12 @@ from Logging import log
 
 
 class Process:
+    """
+    Functionality: \n
+    1. Check if specified process even exist/running in system \n
+    2. Can start specified process
+    3. Can kill specified process
+    """
     def __init__(self):
         self.protocol = Ports.SSH.value[0]  # protocol = SSH
         self.port = Ports.SSH.value[1]  # port = 22

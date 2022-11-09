@@ -3,6 +3,10 @@ from Logging import log
 
 
 class LinkLonger:
+    """
+    Functionality: \n
+    1. Able to convert short url to Long url or say, it basically reverses the url shortening process.
+    """
 
     @staticmethod
     def url_short_reverse(url):
