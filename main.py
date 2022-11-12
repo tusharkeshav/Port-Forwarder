@@ -43,10 +43,14 @@ if __name__ == '__main__':
     link_shortner = LinkShortner()
     all_tunnels = AllTunnels()
     session = Session()
-    try:
-        # start_tunneling()
-        RecoveryCheck.check()
-    except Exception as error:
-        log.exception('An exception occurred: {}'.format(error))
-        log.info('Gracefully cleaning up. Checking if process exist and killing it')
-        process.kill()
+    while True:
+        try:
+            start_tunneling()
+            RecoveryCheck.check()
+        except Exception as error:
+            log.exception('An exception occurred: {}'.format(error))
+            # log.info('Gracefully cleaning up. Checking if process exist and killing it')
+            log.info('Trying to recover. Rerunning the program again')
+            continue
+            process.kill()
+        log.info('Error occurred, trying to recover.')

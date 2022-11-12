@@ -19,4 +19,3 @@ def check():
         # check for Valid session
         log.info('Recovery: Checking for Valid session')
         session.valid_session_check()
-        
