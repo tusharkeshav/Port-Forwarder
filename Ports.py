@@ -1,7 +1,9 @@
 from enum import Enum
 
-'''This file contain all the ports which can be used in future to improve more'''
+
 class Ports(Enum):
+    """This file contains all the ports which can be used in future to improve more"""
+
     SSH = ['tcp', 22]
     HTTP = 80
     HTTPS = 443

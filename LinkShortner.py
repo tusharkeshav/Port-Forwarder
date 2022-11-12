@@ -7,6 +7,12 @@ from Logging import log
 
 
 class LinkShortner:
+    """
+    Functionality: \n
+    1. Shorten the specified long url
+    2. Change alias of given shortened url
+    3. Set Custom alias of url
+    """
 
     def __init__(self):
         self.secret = ApplicationProperties.cutt_ly_secret
