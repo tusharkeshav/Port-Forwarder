@@ -1,4 +1,5 @@
 import psutil
+import ApplicationProperties
 from Ports import Ports
 from RunCommand import RunCommand
 from Logging import log
@@ -11,9 +12,11 @@ class Process:
     2. Can start specified process
     3. Can kill specified process
     """
+
     def __init__(self):
         self.protocol = Ports.SSH.value[0]  # protocol = SSH
         self.port = Ports.SSH.value[1]  # port = 22
+        self.path = ApplicationProperties.binary_path
 
     def check(self):
 
@@ -32,7 +35,7 @@ class Process:
     def get_pid(self, cmd):
         status, output = RunCommand.executeWithOutput(self, cmd)
         if status != 0:
-            return -1   # No process found
+            return -1  # No process found
         else:
             return output
 
@@ -41,8 +44,8 @@ class Process:
         if status == 0:  # success
             self.kill()
         elif status != 0:
-            cmd = 'setsid /home/akhil/Documents/ngrok-2.2.2-linux-amd64/ngrok {} {}'.format(self.protocol, self.port)
-            log.info('Executing command: '+ cmd)
+            cmd = 'setsid {} {} {}'.format(self.path, self.protocol, self.port)
+            log.info('Executing command: ' + cmd)
             RunCommand.executeWithoutOutput(self, cmd)
         pass
 
@@ -52,7 +55,8 @@ class Process:
         #  spawn by setsid, we see that 2 process are running one is setsid(parent) and other is ngrok(child) one So,
         #  for now we consider that new process spawn up always have PID greater than the parent. But it might not be
         #  the case always. Need to look more
-        cmd_check_pid = "ps aux | grep '[n]grok {} {}'".format(self.protocol, self.port) + " | awk -F: '{ split($0,a,\" \"); print a[2] }' | tail -1"
+        cmd_check_pid = "ps aux | grep '[n]grok {} {}'".format(self.protocol,
+                                                               self.port) + " | awk -F: '{ split($0,a,\" \"); print a[2] }' | tail -1"
         PID = self.get_pid(cmd_check_pid)
         if PID == -1:
             print('No such process exist or Process is already killed.')
