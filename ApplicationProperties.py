@@ -8,5 +8,5 @@ BASE_API_URL = 'http://cutt.ly/api/api.php'
 BASE_DOMAIN = 'https://cutt.ly/'
 
 SSH_custom_alias = 'testxyz12'  # it will be like https://cutt.ly/testxyz12
-binary_path = '/home/akhil/Documents/ngrok-2.2.2-linux-amd64/ngrok'
+binary_path = 'ngrok'
 
