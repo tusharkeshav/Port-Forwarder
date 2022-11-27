@@ -1,9 +1,12 @@
+import platform
+
 import psutil
 import ApplicationProperties
 from Ports import Ports
 from RunCommand import RunCommand
 from Logging import log
 
+OS = platform.system().lower()
 
 class Process:
     """
@@ -20,6 +23,8 @@ class Process:
 
     def check(self):
 
+        if OS == 'windows':
+            return self.check_process_windows()
         pid = 0
         status = -1
         for process in psutil.process_iter():
@@ -40,6 +45,11 @@ class Process:
             return output
 
     def start(self):
+        if OS == 'windows':
+            cmd = '\ngrok.exe {} {}'.format(self.protocol, self.port)
+            log.info('Starting process. Executing command: ' + cmd)
+            RunCommand.execute_and_return_pid(self, cmd=cmd)
+            return
         status, output = self.check()
         if status == 0:  # success
             self.kill()
@@ -50,6 +60,11 @@ class Process:
         pass
 
     def kill(self):
+        if OS == 'windows':
+            pid = RunCommand.read_pid()
+            log.info('Starting to kill process with PID: {}'.format(pid))
+            psutil.Process(pid=pid).kill()
+            return 0, 'Process killed'
 
         # TODO: Note: We are extracting all the process that are associated with keyword Ngrok. TODO: But as process
         #  spawn by setsid, we see that 2 process are running one is setsid(parent) and other is ngrok(child) one So,
@@ -71,6 +86,14 @@ class Process:
             print('Process killed')
             return status, output
         pass
+
+    def check_process_windows(self):
+        pid = RunCommand.read_pid()
+        status = -1
+        for process in psutil.process_iter():
+            if process.pid == pid:
+                return (0, 'Process exist with Pid: {}'.format(pid))
+        return (-1, None)
 
 # t = Process()
 # # status, output = t.check()

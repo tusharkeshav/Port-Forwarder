@@ -1,5 +1,6 @@
 from subprocess import getstatusoutput, Popen
 from Logging import log
+from configparser import ConfigParser
 
 
 # TODO: Refactoring
@@ -32,3 +33,28 @@ class RunCommand:
         print('Executing command: ' + cmd)
         status, output = getstatusoutput(cmd)
         return status, output
+
+    def execute_and_return_pid(self, cmd):
+        print('Executing command: ' + cmd)
+        process = Popen([cmd], shell=False, stdin=None, stdout=None, stderr=None, close_fds=True)
+        pid = process.pid
+        self.write_pid(pid)
+        return pid
+
+    def write_pid(self, pid):
+        config = ConfigParser()
+        config.read('app.pid')
+        config.set('pid', 'SSH', str(pid))
+        with open('app.pid', 'w') as data:
+            config.write(data)
+            log.info('Successfully written PID')
+
+    def read_pid(self):
+        config = ConfigParser()
+        config.read('app.pid')
+        return config['pid']['SSH']
+
+# res = RunCommand()
+# print(res.read_pid())
+# res.write_pid(433)
+# print(res.read_pid())
