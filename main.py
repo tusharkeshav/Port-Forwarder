@@ -1,9 +1,9 @@
-import ApplicationProperties
-from AllTunnels import AllTunnels
-from LinkShortner import LinkShortner
-from Process import Process
+from properties import ApplicationProperties
+from ngrok_session.AllTunnels import AllTunnels
+from url_conversion.LinkShortner import LinkShortner
+from process.Process import Process
 from Logging import log
-from Session import Session
+from ngrok_session.Session import Session
 import RecoveryCheck
 
 DEFAULT_SHORT_URL = ApplicationProperties.BASE_DOMAIN + ApplicationProperties.SSH_custom_alias

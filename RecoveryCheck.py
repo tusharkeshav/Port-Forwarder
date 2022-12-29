@@ -1,6 +1,6 @@
 from Logging import log
-from Process import Process
-from Session import Session
+from process.Process import Process
+from ngrok_session.Session import Session
 import time
 
 

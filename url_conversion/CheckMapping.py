@@ -1,4 +1,4 @@
-from LinkLonger import LinkLonger
+from url_conversion.LinkLonger import LinkLonger
 from Logging import log
 
 

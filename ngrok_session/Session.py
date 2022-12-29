@@ -1,9 +1,9 @@
-from AllTunnels import AllTunnels
-from LinkShortner import LinkShortner
-from Process import Process
+from ngrok_session.AllTunnels import AllTunnels
+from url_conversion.LinkShortner import LinkShortner
+from process.Process import Process
 from Logging import log
-import ApplicationProperties
-from CheckMapping import CheckMapping
+from properties import ApplicationProperties
+from url_conversion.CheckMapping import CheckMapping
 
 
 class Session:

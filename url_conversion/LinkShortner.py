@@ -1,7 +1,7 @@
 import json
 import requests
 import uuid
-import ApplicationProperties
+from properties import ApplicationProperties
 from urllib import parse
 from Logging import log
 
@@ -70,7 +70,7 @@ class LinkShortner:
             'name': ApplicationProperties.SSH_custom_alias
         }
         output = {}
-        log.info('Setting the new long url to short url: ' + PORT_FORWARDED_URL+ApplicationProperties.SSH_custom_alias)
+        log.info('Setting the new long url to short url: ' + PORT_FORWARDED_URL + ApplicationProperties.SSH_custom_alias)
         output, status = self.cuttly_api(parameters)
         log.info(str(self.set_alias.__name__) + ' Output: '+ str(output) + ' Status: '+ str(status))
         if output != '' and 'url' in output:

@@ -1,8 +1,8 @@
-import ApplicationProperties
+from properties import ApplicationProperties
 import requests
 from Logging import log
 import json
-from Process import Process
+from process.Process import Process
 import time
 
 

@@ -1,7 +1,7 @@
 import psutil
-import ApplicationProperties
+from properties import ApplicationProperties
 from Ports import Ports
-from RunCommand import RunCommand
+from process.RunCommand import RunCommand
 from Logging import log
 
 
