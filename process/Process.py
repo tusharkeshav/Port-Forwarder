@@ -14,8 +14,8 @@ class Process:
     """
 
     def __init__(self):
-        self.protocol = Ports.SSH.value[0]  # protocol = SSH
-        self.port = Ports.SSH.value[1]  # port = 22
+        self.protocol = ApplicationProperties.PORT[0]  # protocol
+        self.port = ApplicationProperties.PORT[1]  # port = 22
         self.path = ApplicationProperties.binary_path
 
     def check(self):

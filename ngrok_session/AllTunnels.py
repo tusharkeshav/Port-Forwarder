@@ -47,7 +47,9 @@ class AllTunnels:
                 ngrok_public_url = str(response['tunnels'][0]['public_url'])
                 # TODO: Look for other option
                 # Patch: cuttly don't support Long url with subdomain starting with numeric(e.g 0.tcp.ngrok.io). Adding null keyword to fix it
-                url2shorten = self.url_patch(ngrok_public_url)
+                url2shorten = ngrok_public_url
+                if ApplicationProperties.PORT[0].lower() == 'tcp':
+                    url2shorten = self.url_patch(ngrok_public_url)
                 log.info("Url to be shortened: " + url2shorten)
                 return (0, url2shorten)
             else:
