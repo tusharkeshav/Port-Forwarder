@@ -1,5 +1,5 @@
 
-ngrok_secret="2Gtfl9p8fICyKmcYofbV8CnOXMw_6iZCf9KCAv7fqHiRGD7uv"
+ngrok_secret = "2Gtfl9p8fICyKmcYofbV8CnOXMw_6iZCf9KCAv7fqHiRGD7uv"
 BASE_TUNNEL_URL = 'https://api.ngrok.com/tunnels'
 
 # Use Cut.ly instead
@@ -10,3 +10,4 @@ BASE_DOMAIN = 'https://cutt.ly/'
 SSH_custom_alias = 'testxyz12'  # it will be like https://cutt.ly/testxyz12
 binary_path = '/home/akhil/Documents/ngrok-2.2.2-linux-amd64/ngrok'
 
+PORT = ['http', 456]  # port to be forwarded
