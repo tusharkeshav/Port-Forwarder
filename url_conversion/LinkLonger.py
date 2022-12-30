@@ -1,5 +1,5 @@
 import requests
-from Logging import log
+from log.Logging import log
 
 
 class LinkLonger:

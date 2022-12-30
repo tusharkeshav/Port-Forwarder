@@ -1,5 +1,5 @@
 from url_conversion.LinkLonger import LinkLonger
-from Logging import log
+from log.Logging import log
 
 
 class CheckMapping:

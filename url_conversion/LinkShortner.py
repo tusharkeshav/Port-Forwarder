@@ -3,7 +3,7 @@ import requests
 import uuid
 from properties import ApplicationProperties
 from urllib import parse
-from Logging import log
+from log.Logging import log
 
 
 class LinkShortner:
