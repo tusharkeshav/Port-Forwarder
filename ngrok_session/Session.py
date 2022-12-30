@@ -1,3 +1,4 @@
+import time
 from ngrok_session.AllTunnels import AllTunnels
 from url_conversion.LinkShortner import LinkShortner
 from process.Process import Process
@@ -44,6 +45,8 @@ class Session:
 
     def spawn_process(self):
         self.process.start()
+        log.debug('Sleeping for 2 seconds before checking if process launch state.')
+        time.sleep(2)
         # TODO: checking for retry mechanism if process didn't started successfully.
         if self.process.check()[0] == 0:
             log.info('Process started successfully.')
@@ -57,3 +60,5 @@ class Session:
             else:
                 log.error("Error in long URL: " + tunnel_output[1])
                 return -1
+        else:
+            log.error('Process didn\'t started successfully.')

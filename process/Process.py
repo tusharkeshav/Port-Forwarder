@@ -29,6 +29,7 @@ class Process:
                 log.info('Process exist. List of process: {}'.format(output))
                 return (status, output)
         else:
+            log.debug('No process found by psutil module.')
             return -1, None
 
     def get_pid(self, cmd):
