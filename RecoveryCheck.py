@@ -1,4 +1,4 @@
-from Logging import log
+from log.Logging import log
 from process.Process import Process
 from ngrok_session.Session import Session
 import time

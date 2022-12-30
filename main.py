@@ -2,7 +2,7 @@ from properties import ApplicationProperties
 from ngrok_session.AllTunnels import AllTunnels
 from url_conversion.LinkShortner import LinkShortner
 from process.Process import Process
-from Logging import log
+from log.Logging import log
 from ngrok_session.Session import Session
 import RecoveryCheck
 

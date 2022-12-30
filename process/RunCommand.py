@@ -1,5 +1,5 @@
 from subprocess import getstatusoutput, Popen
-from Logging import log
+from log.Logging import log
 
 
 # TODO: Refactoring

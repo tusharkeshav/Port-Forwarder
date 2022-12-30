@@ -1,6 +1,6 @@
 from properties import ApplicationProperties
 import requests
-from Logging import log
+from log.Logging import log
 import json
 from process.Process import Process
 import time
