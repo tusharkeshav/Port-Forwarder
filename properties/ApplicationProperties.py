@@ -1,13 +1,15 @@
+import configparser as cp
+import json
 
-ngrok_secret = "2Gtfl9p8fICyKmcYofbV8CnOXMw_6iZCf9KCAv7fqHiRGD7uv"
-BASE_TUNNEL_URL = 'https://api.ngrok.com/tunnels'
+config = cp.ConfigParser()
+config.read('properties/config.ini')
+ngrok_secret = config.get('PROPERTIES', 'NGROK_API_SECRET')
+BASE_TUNNEL_URL = config.get('PROPERTIES', 'NGROK_TUNNEL_ENDPOINT')
 
-# Use Cut.ly instead
-cutt_ly_secret = 'd07364e03b5eb505576278d7362965100d3a2'
-BASE_API_URL = 'http://cutt.ly/api/api.php'
-BASE_DOMAIN = 'https://cutt.ly/'
+cutt_ly_secret = config.get('PROPERTIES', 'CUTTLY_SECRET')
+BASE_API_URL = config.get('PROPERTIES', 'CUTTLY_API_ENDPOINT')
+BASE_DOMAIN = config.get('PROPERTIES', 'CUTTLY_DOMAIN')
 
-SSH_custom_alias = 'testxyz12'  # it will be like https://cutt.ly/testxyz12
-binary_path = '/home/akhil/Documents/ngrok-2.2.2-linux-amd64/ngrok'
-
-PORT = ['http', 456]  # port to be forwarded
+SSH_custom_alias = config.get('PROPERTIES', 'ALIAS')  # it will be like https://cutt.ly/testxyz12
+binary_path = config.get('PROPERTIES', 'BINARY_PATH')
+PORT = json.loads(config.get('PROPERTIES', 'PROTOCOL_PORT'))  # port to be forwarded
