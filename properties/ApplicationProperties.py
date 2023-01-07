@@ -1,15 +1,58 @@
 import configparser as cp
 import json
+from log.Logging import log
 
 config = cp.ConfigParser()
-config.read('properties/config.ini')
-ngrok_secret = config.get('PROPERTIES', 'NGROK_API_SECRET')
-BASE_TUNNEL_URL = config.get('PROPERTIES', 'NGROK_TUNNEL_ENDPOINT')
+# Note: Below optionxform is added coz ConfigParser was turning All Uppercase config key to lowercase automatically.
+# https://stackoverflow.com/q/19359556/9730403
+config.optionxform = str
 
-cutt_ly_secret = config.get('PROPERTIES', 'CUTTLY_SECRET')
-BASE_API_URL = config.get('PROPERTIES', 'CUTTLY_API_ENDPOINT')
-BASE_DOMAIN = config.get('PROPERTIES', 'CUTTLY_DOMAIN')
 
-SSH_custom_alias = config.get('PROPERTIES', 'ALIAS')  # it will be like https://cutt.ly/testxyz12
-binary_path = config.get('PROPERTIES', 'BINARY_PATH')
-PORT = json.loads(config.get('PROPERTIES', 'PROTOCOL_PORT'))  # port to be forwarded
+def NGROK_SECRET():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'NGROK_API_SECRET')
+
+
+def BASE_TUNNEL_URL():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'NGROK_TUNNEL_ENDPOINT')
+
+
+def CUTTLY_SECRET():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'CUTTLY_SECRET')
+
+
+def BASE_API_URL():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'CUTTLY_API_ENDPOINT')
+
+
+def BASE_DOMAIN():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'CUTTLY_DOMAIN')
+
+
+def SSH_CUSTOM_ALIAS():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'ALIAS')
+
+
+def BINARY_PATH():
+    config.read('properties/config.ini')
+    return config.get('PROPERTIES', 'BINARY_PATH')
+
+
+def PORT():
+    config.read('properties/config.ini')
+    return json.loads(config.get('PROPERTIES', 'PROTOCOL_PORT'))
+
+
+def set_property(prop, value: str):
+    config.read('properties/config.ini')
+    value = value.replace("'", "\"")
+    config.set('PROPERTIES', prop, value)
+    log.debug('Setting property in config file. prop: {prop}, value: {value}'.format(prop=prop, value=value))
+    with open('properties/config.ini', 'w') as configfile:
+        config.write(configfile)
+        configfile.close()

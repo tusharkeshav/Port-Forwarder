@@ -15,8 +15,8 @@ class LinkShortner:
     """
 
     def __init__(self):
-        self.secret = ApplicationProperties.cutt_ly_secret
-        self.SSH_alias = ApplicationProperties.SSH_custom_alias
+        self.secret = ApplicationProperties.CUTTLY_SECRET()
+        self.SSH_alias = ApplicationProperties.SSH_CUSTOM_ALIAS()
         # self.urlToShorten = url
 
     def url_shortner(self, url):
@@ -29,7 +29,7 @@ class LinkShortner:
 
     # Invoke cuttly api to get the output
     def cuttly_api(self, parameters: dict) -> (dict, int):
-        BASE_API_URL = ApplicationProperties.BASE_API_URL
+        BASE_API_URL = ApplicationProperties.BASE_API_URL()
         parameters['key'] = self.secret
         print(parameters)
         response = requests.get(url=BASE_API_URL, params=parameters)
@@ -38,7 +38,7 @@ class LinkShortner:
     # This will free the alias from the
     def change_alias(self):
         random_alias = 'test' + str(uuid.uuid4())[:5]
-        short_url = parse.quote(ApplicationProperties.BASE_DOMAIN + self.SSH_alias)
+        short_url = parse.quote(ApplicationProperties.BASE_DOMAIN() + self.SSH_alias)
         parameters = {
             'edit': short_url,
             'name': random_alias
@@ -67,10 +67,10 @@ class LinkShortner:
         PORT_FORWARDED_URL = url
         parameters = {
             'short': PORT_FORWARDED_URL,
-            'name': ApplicationProperties.SSH_custom_alias
+            'name': ApplicationProperties.SSH_CUSTOM_ALIAS()
         }
         output = {}
-        log.info('Setting the new long url to short url: ' + PORT_FORWARDED_URL + ApplicationProperties.SSH_custom_alias)
+        log.info('Setting the new long url to short url: ' + PORT_FORWARDED_URL + ApplicationProperties.SSH_CUSTOM_ALIAS())
         output, status = self.cuttly_api(parameters)
         log.info(str(self.set_alias.__name__) + ' Output: '+ str(output) + ' Status: '+ str(status))
         if output != '' and 'url' in output:

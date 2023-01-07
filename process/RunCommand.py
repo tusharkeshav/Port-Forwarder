@@ -20,7 +20,7 @@ class RunCommand:
 
     def execute(self, cmd: str, protocol: str, port: int) -> str:
         cmd = cmd.format(protocol, port)
-        print('Executing command: ' + cmd)
+        log.info('Executing command: ' + cmd)
         status, output = getstatusoutput(cmd)
         if status != 0:
             # return 0, {'message': "There's no such {} process".format(cmd)}
