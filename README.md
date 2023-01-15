@@ -6,7 +6,7 @@ Dynamic Ngrok is a command line interface that ensure your port forwarding will 
 * Lot of service can be build on top of this.
 
 ## First time installation:
-* Set up ngrok auth-token manually. It can be done using `python3 main.py --ngrok_auth_token <auth-token>`
+* [Set up ngrok auth-token manually](https://github.com/tusharkeshav/Port-Forwarder/wiki/Setting-ngrok-auth-token). It can be done using `python3 main.py --ngrok_auth_token <auth-token>`
 * [Get api key from cut.ly](https://github.com/tusharkeshav/Port-Forwarder/wiki/Setting-up-Cutt.ly-API)
 * [Generate Ngrok API secret](https://github.com/tusharkeshav/Port-Forwarder/wiki/Generating-Ngrok-API-Key)
 > __Note__: NGROK API secret is different from NGROK AUTH-TOKEN. NGROK API secret is use to authenticate api and NGROK auth-token is used to access establish a successful tunnel/port forwarding on behealf of particular user account.
