@@ -13,9 +13,9 @@ class Process:
     """
 
     def __init__(self):
-        self.protocol = ApplicationProperties.PORT[0]  # protocol
-        self.port = ApplicationProperties.PORT[1]  # port = 22
-        self.path = ApplicationProperties.binary_path
+        self.protocol = ApplicationProperties.PORT()[0]  # protocol
+        self.port = ApplicationProperties.PORT()[1]  # port = 22
+        self.path = ApplicationProperties.BINARY_PATH()
 
     def check(self):
 
@@ -61,14 +61,14 @@ class Process:
         if PID == -1:
             print('No such process exist or Process is already killed.')
             return
-        print('Running Process PID: ', PID)
+        log.info('Running Process PID: {}'.format(PID))
         cmd_kill = 'kill -9 {}'.format(PID)
         status, output = RunCommand.executeWithOutput(self, cmd_kill)
 
         # TODO: Recheck if ngrok session killed or not
 
         if status == 0:
-            print('Process killed')
+            log.info('Successfully killed the process.')
             return status, output
         pass
 

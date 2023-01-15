@@ -18,7 +18,7 @@ class Session:
         self.process = Process()
         self.link_shortner = LinkShortner()
         self.all_tunnels = AllTunnels()
-        self.DEFAULT_SHORT_URL = ApplicationProperties.BASE_DOMAIN + ApplicationProperties.SSH_custom_alias
+        self.DEFAULT_SHORT_URL = ApplicationProperties.BASE_DOMAIN() + ApplicationProperties.SSH_CUSTOM_ALIAS()
 
     def valid_session_check(self):
 

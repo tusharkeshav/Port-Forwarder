@@ -8,7 +8,7 @@ import time
 
 class AllTunnels:
     def __init__(self):
-        self.secret_key = ApplicationProperties.ngrok_secret
+        self.secret_key = ApplicationProperties.NGROK_SECRET()
 
     def url_patch(self, url):
         # Patch: cuttly don't support Long url with subdomain starting with numeric(e.g 0.tcp.ngrok.io). Adding null keyword to fix it
@@ -16,7 +16,7 @@ class AllTunnels:
         return 'null' + url.split('//')[-1]
 
     def tunnels(self):
-        url = ApplicationProperties.BASE_TUNNEL_URL  # ngrok tunnel endpoint
+        url = ApplicationProperties.BASE_TUNNEL_URL()  # ngrok tunnel endpoint
         headers = {'ngrok-version': '2',
                    'Authorization': 'Bearer {}'.format(self.secret_key)}
 
@@ -48,7 +48,7 @@ class AllTunnels:
                 # TODO: Look for other option
                 # Patch: cuttly don't support Long url with subdomain starting with numeric(e.g 0.tcp.ngrok.io). Adding null keyword to fix it
                 url2shorten = ngrok_public_url
-                if ApplicationProperties.PORT[0].lower() == 'tcp':
+                if ApplicationProperties.PORT()[0].lower() == 'tcp':
                     url2shorten = self.url_patch(ngrok_public_url)
                 log.info("Url to be shortened: " + url2shorten)
                 return (0, url2shorten)

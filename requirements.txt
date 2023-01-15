@@ -1,7 +1,4 @@
-requests
-psutil
-json
-urllib3
-uuid
-time
-requests
+requests~=2.25.1
+psutil~=5.9.0
+mockito~=1.4.0
+PyYAML~=6.0
