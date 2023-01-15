@@ -61,7 +61,7 @@ class Process:
         if PID == -1:
             print('No such process exist or Process is already killed.')
             return
-        log.info('Running Process PID: ', PID)
+        log.info('Running Process PID: {}'.format(PID))
         cmd_kill = 'kill -9 {}'.format(PID)
         status, output = RunCommand.executeWithOutput(self, cmd_kill)
 
