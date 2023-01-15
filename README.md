@@ -29,3 +29,11 @@ git clone ... url...
 pip3 install -r requirements.txt
 python3 main.py
 ```
+
+## Docker:
+It can be run in docker.
+```
+sudo docker build --tag portforwarder .  # create an image
+sudo docker run -it portforwarder        # run in interactive mode
+sudo docker run exec <container-name or container-id> tail -50f /app/log/Application.log  # To view logs
+```
