@@ -14,8 +14,7 @@ Dynamic Ngrok is a command line interface that ensure your port forwarding will 
 ## Configurations: (path: /properties/config.ini)
 > __Note__: Ensure all config properties are in place before running the script.
 ```
-<span data-color="red">Red</span>
-$\color{green}{NGROK_API_SECRET = <NGROK API SECRET>}$
+NGROK_API_SECRET = <NGROK API SECRET>
 NGROK_TUNNEL_ENDPOINT = https://api.ngrok.com/tunnels # it's tunnel
 CUTTLY_SECRET = <CUTTLY API SECRET>
 CUTTLY_API_ENDPOINT = http://cutt.ly/api/api.php
