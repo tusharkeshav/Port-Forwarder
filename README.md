@@ -45,3 +45,9 @@ sudo docker build --tag portforwarder .  # create an image
 sudo docker run -it portforwarder        # run in interactive mode
 sudo docker run exec <container-name or container-id> tail -50f /app/log/Application.log  # To view logs
 ```
+
+## FAQ
+- [How to use](https://github.com/tusharkeshav/Port-Forwarder/wiki/How-to-use) </br>
+- [Passing Config via Arguments](https://github.com/tusharkeshav/Port-Forwarder/wiki/Passing-config-via-args:) </br>
+We have provided ngrok binary with this as well. It's same binary provided by ngrok. You can verify via checksum.
+Follow wiki for more.
