@@ -1,9 +1,16 @@
 # Port-Forwarder
+![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)  ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square) [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
+[![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tusharkeshav/Port-Forwarder)
+
 Dynamic Ngrok is a command line interface that ensure your port forwarding will up and work without an issue.
 * It ensure that ngrok generated url always pointed to your custom alias.
 * It ensure that it will recover from any intermittent failures like connectivity issues.
 * It ensure reliability of system.
 * Lot of service can be build on top of this.
+
+# System Structure
+![image](https://user-images.githubusercontent.com/43966061/213911128-f4a1bb7c-79ca-4543-85cc-46f24cf846a1.png)
+
 
 ## First time installation:
 * [Set up ngrok auth-token manually](https://github.com/tusharkeshav/Port-Forwarder/wiki/Setting-ngrok-auth-token). It can be done using `python3 main.py --ngrok_auth_token <auth-token>`
