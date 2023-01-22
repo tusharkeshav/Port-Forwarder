@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 #RUN mkdir -p "/root/.config/ngrok/"
 RUN mkdir -p "/root/.ngrok2/"
-ARG authtoken=2Gp5Bbz0CyQZE5tVjciGqVangwE_FLxBY5eRioK5nPNPrPsT
+ARG authtoken
 #RUN echo "version: 2 \nauthtoken: $authtoken \nconsole_ui: false" >> /root/.config/ngrok/ngrok.yml
 RUN echo "version: 2 \nauthtoken: $authtoken \nconsole_ui: false" >> /root/.ngrok2/ngrok.yml
 COPY requirements.txt requirements.txt
