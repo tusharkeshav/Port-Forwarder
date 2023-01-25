@@ -1,5 +1,5 @@
 # Port-Forwarder
-![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)  ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square) [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
+![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)  ![GitHub](https://img.shields.io/badge/license-Apache-blue?style=popout-square) [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tusharkeshav/Port-Forwarder)
 
 Dynamic Ngrok is a command line interface that ensure your port forwarding will up and work without an issue.
