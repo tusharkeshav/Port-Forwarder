@@ -1,5 +1,5 @@
 # Port-Forwarder
-![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)  ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square) [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
+![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)  ![GitHub](https://img.shields.io/badge/license-Apache-blue?style=popout-square) [![Awesome](https://awesome.re/badge-flat.svg)](https://awesome.re)
 [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/tusharkeshav/Port-Forwarder)
 
 Dynamic Ngrok is a command line interface that ensure your port forwarding will up and work without an issue.
@@ -8,9 +8,20 @@ Dynamic Ngrok is a command line interface that ensure your port forwarding will 
 * It ensure reliability of system.
 * Lot of service can be build on top of this.
 
+# How it works?
+It exposes the ngrok public url to a static custom short URL.
+So, when the ngrok backend URL changes, it's the responsbility of service to correctly change/modify shorturl to new public url.
+You have one custom url, now there's no need to get ngrok url. Service will automatically ensure that correct mapping between ngrok public url and short url exist.
+Service uses cuttly url shortening service.
+
 # System Structure
 ![image](https://user-images.githubusercontent.com/43966061/213911128-f4a1bb7c-79ca-4543-85cc-46f24cf846a1.png)
 
+# Use Case:
+- Can be used to reliably host server in raspberry pie.
+- Can be used to build automation on top of it.
+- Can be used to transfer file using SSH or stfp.
+- Host a server. No need to rely for costly servers(if yor doing it for temporary purposes)
 
 ## First time installation:
 * [Set up ngrok auth-token manually](https://github.com/tusharkeshav/Port-Forwarder/wiki/Setting-ngrok-auth-token). It can be done using `python3 main.py --ngrok_auth_token <auth-token>`
